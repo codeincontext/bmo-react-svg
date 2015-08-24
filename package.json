@@ -1,0 +1,20 @@
+{
+  "name": "bmo-svg",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "jsx -x jsx --harmony src dest && node build",
+    "watch:build": "nodemon --quiet --watch src --ext jsx --exec \"npm run build\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.4.1",
+    "react": "^0.13.3",
+    "react-tools": "^0.13.3"
+  },
+  "dependencies": {
+    "color": "^0.10.1"
+  }
+}

@@ -1,0 +1,5 @@
+.module-cache
+node_modules
+
+icons/*.svg
+dest/*.js
