@@ -17,16 +17,16 @@ var ShapeHelpers = {
 
   higherShape: function(shape, offset) {
     offset = offset || 10;
-    return React.cloneElement(shape, {cy: shape.props.cy-offset});
+    var newProps = shape.props.hasOwnProperty('cy')
+      ? {cy: shape.props.cy-offset}
+      : {y: shape.props.y-offset};
+
+    return React.cloneElement(shape, newProps);
   },
 
   scalePoint: function(scale) {
     return p => [p[0] * scale, p[1] * scale];
   },
-
-  offsetPoint: function(x, y) {
-    return p => [p[0] + x, p[1] + y];
-  }
 };
 
 module.exports = ShapeHelpers;
