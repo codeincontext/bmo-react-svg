@@ -1,22 +1,22 @@
 var React = require('react'),
     ShapeHelpers = require('./shapeHelpers');
 
+// The basic cross shape on a 3x3 pixel grid
+//
+//    0 1 2 3
+//   ––––––––
+// 0|   x x         0  1
+// 1| x x x x    10 11 2  3
+// 2| x x x x    9  8  5  4
+// 3|   x x         7  6
+
+var basicPoints = [[1, 0], [2, 0], [2, 1], [3, 1], [3, 2], [2, 2], [2, 3], [1, 3], [1, 2], [0, 2], [0, 1], [1, 1]];
+
 var Cross = React.createClass({
   render: function() {
-    var points = [[1, 0], // clockwise from top left corner of top arm
-                  [2, 0],
-                  [2, 1],
-                  [3, 1],
-                  [3, 2],
-                  [2, 2],
-                  [2, 3],
-                  [1, 3],
-                  [1, 2],
-                  [0, 2],
-                  [0, 1],
-                  [1, 1]];
 
-    points = points
+    var points = basicPoints
+      .map(this.alignPointToGrid(this.gridForCrossArmWidth(this.props.armWidth)))
       .map(ShapeHelpers.scalePoint(this.props.scale))
       .map(p => p.join(','))
       .join(' ');
@@ -28,12 +28,14 @@ var Cross = React.createClass({
     );
   },
 
-  scalePoint: function(scale) {
-    return p => [p[0] * scale, p[1] * scale];
+  // pixel values for the 3x3 grid axes based on a given arm width
+  gridForCrossArmWidth: function(armWidth) {
+    var adjustmentEachSide = (armWidth-1)/2;
+    return [0, 1-adjustmentEachSide, 2+adjustmentEachSide, 3];
   },
 
-  offsetPoint: function(x, y) {
-    return p => [p[0] + x, p[1] + y];
+  alignPointToGrid: function(gridWarp) {
+    return p => [gridWarp[p[0]], gridWarp[p[1]]]
   }
 });
 

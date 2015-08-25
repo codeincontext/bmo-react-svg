@@ -48,7 +48,7 @@ var Bmo = React.createClass({
           <circle cx="460" cy="610" r="30" fill="#48F464" strokeWidth="3" stroke="black"/>
         )}
         {ShapeHelpers.pseudo3dShape(
-          <Cross x={100} y={510} scale={50} fill="#FCDE5D"/>
+          <Cross x={100} y={510} scale={50} armWidth={1.1} fill="#FCDE5D"/>
         )}
         {ShapeHelpers.pseudo3dShape(
           <Triangle x={325} y={510} scale={20} fill="#47E1F2"/>
