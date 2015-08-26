@@ -1,33 +1,17 @@
 var React = require('react'),
     Cross = require('./cross'),
     Triangle = require('./triangle'),
-    ShapeHelpers = require('./shapeHelpers')
+    ShapeHelper = require('./shapeHelper')
     Face = require('./face');
 
-var Bmo = React.createClass({
+class Bmo extends React.Component {
 
-  getDefaultProps: function() {
-    return {
-      body: {
-        width: 550,
-        height: 800,
-        color: '#6BBEB0'
-      },
-      tablet: {
-        height: 15
-      }
-    };
-  },
-
-  render: function() {
+  render() {
     var body = this.props.body;
     var viewBox = [0, 0, body.width, body.height].join(' ');
 
     return (
-      <svg xmlns="http://www.w3.org/svg/2000"
-        viewBox={viewBox}
-        width={body.width}
-        height={body.height}>
+      <svg xmlns="http://www.w3.org/svg/2000" viewBox={viewBox} width={body.width} height={body.height}>
 
         // body
         <rect x="0" y="0" width={body.width} height={body.height} rx="40" ry="40" fill={body.color}/>
@@ -45,21 +29,32 @@ var Bmo = React.createClass({
         <rect x="70" y="710" width="90" height={this.props.tablet.height} rx={this.props.tablet.height / 2} ry={this.props.tablet.height / 2} fill="#2320D1" strokeWidth="3" stroke="black"/>
         <rect x="190" y="710" width="90" height={this.props.tablet.height} rx={this.props.tablet.height / 2} ry={this.props.tablet.height / 2} fill="#2320D1" strokeWidth="3" stroke="black"/>
 
-        {ShapeHelpers.pseudo3dShape(
+        {ShapeHelper.pseudo3dShape(
           <circle cx="380" cy="685" r="50" fill="#F72A6A" strokeWidth="3" stroke="black"/>
         )}
-        {ShapeHelpers.pseudo3dShape(
+        {ShapeHelper.pseudo3dShape(
           <circle cx="460" cy="610" r="30" fill="#48F464" strokeWidth="3" stroke="black"/>
         )}
-        {ShapeHelpers.pseudo3dShape(
+        {ShapeHelper.pseudo3dShape(
           <Cross x={100} y={510} scale={50} armWidth={1.1} fill="#FCDE5D"/>
         )}
-        {ShapeHelpers.pseudo3dShape(
+        {ShapeHelper.pseudo3dShape(
           <Triangle x={325} y={510} scale={20} fill="#47E1F2"/>
         )}
       </svg>
     );
+  }
+};
+
+Bmo.defaultProps = {
+  body: {
+    width: 550,
+    height: 800,
+    color: '#6BBEB0'
   },
-});
+  tablet: {
+    height: 15
+  }
+};
 
 module.exports = Bmo;

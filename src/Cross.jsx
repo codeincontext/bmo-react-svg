@@ -1,5 +1,5 @@
 var React = require('react'),
-    ShapeHelpers = require('./shapeHelpers');
+    ShapeHelper = require('./shapeHelper');
 
 // The basic cross shape on a 3x3 pixel grid
 //
@@ -12,12 +12,11 @@ var React = require('react'),
 
 var basicPoints = [[1, 0], [2, 0], [2, 1], [3, 1], [3, 2], [2, 2], [2, 3], [1, 3], [1, 2], [0, 2], [0, 1], [1, 1]];
 
-var Cross = React.createClass({
-  render: function() {
-
+class Cross extends React.Component {
+  render() {
     var points = basicPoints
       .map(this.alignPointToGrid(this.gridForCrossArmWidth(this.props.armWidth)))
-      .map(ShapeHelpers.scalePoint(this.props.scale))
+      .map(ShapeHelper.scalePoint(this.props.scale))
       .map(p => p.join(','))
       .join(' ');
 
@@ -26,17 +25,17 @@ var Cross = React.createClass({
         <polygon points={points} fill={this.props.fill} strokeWidth="3" stroke="black"/>
       </g>
     );
-  },
+  }
 
   // pixel values for the 3x3 grid axes based on a given arm width
-  gridForCrossArmWidth: function(armWidth) {
+  gridForCrossArmWidth(armWidth) {
     var adjustmentEachSide = (armWidth-1)/2;
     return [0, 1-adjustmentEachSide, 2+adjustmentEachSide, 3];
-  },
+  }
 
-  alignPointToGrid: function(gridWarp) {
+  alignPointToGrid(gridWarp) {
     return p => [gridWarp[p[0]], gridWarp[p[1]]]
   }
-});
+};
 
 module.exports = Cross;

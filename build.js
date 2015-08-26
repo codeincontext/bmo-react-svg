@@ -1,6 +1,6 @@
-var fs = require('fs')
-var React = require('react')
-var BMO = require('./dest/Bmo')
+var fs = require('fs'),
+    React = require('react'),
+    BMO = require('./dest/Bmo');
 
 var build = function(name, props) {
   var svg = React.renderToStaticMarkup(React.createElement(BMO, props));

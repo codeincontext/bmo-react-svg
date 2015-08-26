@@ -1,13 +1,13 @@
 var React = require('react'),
-    ShapeHelpers = require('./shapeHelpers');
+    ShapeHelper = require('./shapeHelper');
 
-var Triangle = React.createClass({
-  render: function() {
+class Triangle extends React.Component {
+  render() {
     var points = [[2, 0],
                   [0, 3.5],
                   [4, 3.5]];
     points = points
-      .map(ShapeHelpers.scalePoint(this.props.scale))
+      .map(ShapeHelper.scalePoint(this.props.scale))
       .map(p => p.join(','))
       .join(' ');
 
@@ -17,6 +17,6 @@ var Triangle = React.createClass({
       </g>
     );
   }
-});
+};
 
 module.exports = Triangle;

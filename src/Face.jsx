@@ -1,8 +1,8 @@
 var React = require('react');
 
-var Face = React.createClass({
+class Face extends React.Component {
 
-  render: function() {
+  render() {
     var eyeOneX = this.props.width/2 - this.props.eyeDistance/2;
     var eyeTwoX = this.props.width/2 + this.props.eyeDistance/2;
 
@@ -16,11 +16,11 @@ var Face = React.createClass({
         <circle cx={eyeOneX} cy="0" r={this.props.eyeRadius} fill={this.props.color} strokeWidth="3" stroke={this.props.color}/>
         <circle cx={eyeTwoX} cy="0" r={this.props.eyeRadius} fill={this.props.color} strokeWidth="3" stroke={this.props.color}/>
 
-        <path d={mouthPath} fill="transparent" stroke={this.props.color} strokeWidth="7" strokeLinecap="round" stroke={this.props.color}/>
+        <path d={mouthPath} fill="transparent" stroke={this.props.color} strokeWidth="7" strokeLinecap="round"/>
       </g>
     )
   }
 
-});
+};
 
 module.exports = Face;
